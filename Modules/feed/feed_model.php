@@ -92,6 +92,10 @@ class Feed
         if ($datatype==DataType::HISTOGRAM && $engine!=Engine::MYSQL) $engine = Engine::MYSQL;
 
         $result = $this->mysqli->query("INSERT INTO feeds (userid,tag,name,datatype,public,engine) VALUES ('$userid','$tag','$name','$datatype',false,'$engine')");
+	if (! $result)
+	{
+		echo "INSERT failed";
+	}
         $feedid = $this->mysqli->insert_id;
 
         if ($feedid>0)
